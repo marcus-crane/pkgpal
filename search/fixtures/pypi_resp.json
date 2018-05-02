@@ -1,0 +1,10 @@
+{
+    "description": "The Datadog Python library",
+    "homepage": "https://www.datadoghq.com",
+    "latest_version": "0.20.0",
+    "license": "BSD",
+    "name": "datadog",
+    "package_page": "https://pypi.org/project/datadog/",
+    "source_repo": false,
+    "tarball": "https://files.pythonhosted.org/packages/36/29/4c3340db9f5d0ff27e3ce7af621cff4f9b8b45dc3191a445037972fb4757/datadog-0.20.0.tar.gz"
+}

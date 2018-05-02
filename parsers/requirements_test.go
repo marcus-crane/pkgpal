@@ -6,13 +6,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestLoadFile(t *testing.T) {
-	assert := assert.New(t)
-
-	file := LoadFile("fixtures/test.txt")
-	assert.Equal(file, "This is a test")
-}
-
 func TestParseRequirements(t *testing.T) {
 	assert := assert.New(t)
 
@@ -50,6 +43,16 @@ func TestPruneVersions(t *testing.T) {
 	actual := PruneRequirements(reqs)
 
 	expected := []string{"amqp", "beautifulsoup4", "billiard"}
+	assert.Equal(expected, actual)
+}
+
+func TestPruneMixedVersions(t *testing.T) {
+	assert := assert.New(t)
+
+	reqs := "amqp\nbeautifulsoup4==4.6.0\nawscli==0.1.2.3.4.5\npython"
+	actual := PruneRequirements(reqs)
+
+	expected := []string{"amqp", "beautifulsoup4", "awscli", "python"}
 	assert.Equal(expected, actual)
 }
 

@@ -1,0 +1,10 @@
+{
+    "name": "test-package",
+    "dependencies": {
+        "heck": "^1.2.3"
+    },
+    "devDependencies": {
+        "nice": "0.1.2",
+        "wow": "~0.5.4"
+    }
+}
