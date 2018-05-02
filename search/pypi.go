@@ -2,6 +2,9 @@ package search
 
 import (
 	"encoding/json"
+	"sort"
+
+	"github.com/marcus-crane/pkgpal/parsers"
 )
 
 // Package is the Go representation of a pkgparse package response
@@ -16,6 +19,9 @@ type Package struct {
 	Tarball       string `json:"tarball"`
 }
 
+// Packages is a group of packages. Basically just for testing purposes.
+type Packages []Package
+
 // PypiPackage queries the /pypi/<package> endpoint for Python packages
 func PypiPackage(name string) Package {
 	response := Package{}
@@ -27,4 +33,21 @@ func PypiPackage(name string) Package {
 		panic(unmarshallErr)
 	}
 	return response
+}
+
+// ParseRequirements takes the file path for a requirements
+// file, parses it, queries each package and returns
+// a slice of Package structs
+func ParseRequirements(path string) Packages {
+	var packages Packages
+
+	requirements := parsers.FeastRequirements(path)
+	sort.Strings(requirements)
+
+	for _, requirement := range requirements {
+		packageResponse := PypiPackage(requirement)
+		packages = append(packages, packageResponse)
+	}
+
+	return packages
 }
