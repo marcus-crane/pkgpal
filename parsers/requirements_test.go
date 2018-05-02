@@ -39,7 +39,7 @@ func TestPruneVersionMissingVersion(t *testing.T) {
 func TestPruneVersions(t *testing.T) {
 	assert := assert.New(t)
 
-	reqs := "amqp==2.2.2\nbeautifulsoup4==4.6.0\nbilliard==3.5.0.3"
+	reqs := []string{"amqp==2.2.2", "beautifulsoup4==4.6.0", "billiard==3.5.0.3"}
 	actual := PruneRequirements(reqs)
 
 	expected := []string{"amqp", "beautifulsoup4", "billiard"}
@@ -49,7 +49,7 @@ func TestPruneVersions(t *testing.T) {
 func TestPruneMixedVersions(t *testing.T) {
 	assert := assert.New(t)
 
-	reqs := "amqp\nbeautifulsoup4==4.6.0\nawscli==0.1.2.3.4.5\npython"
+	reqs := []string{"amqp", "beautifulsoup4==4.6.0", "awscli==0.1.2.3.4.5", "python"}
 	actual := PruneRequirements(reqs)
 
 	expected := []string{"amqp", "beautifulsoup4", "awscli", "python"}
@@ -61,4 +61,18 @@ func TestLoadRequirements(t *testing.T) {
 
 	file := LoadRequirements("fixtures/requirements.txt")
 	assert.Equal(20, len(file))
+}
+
+func TestFeastRequirements(t *testing.T) {
+	assert := assert.New(t)
+
+	expected := []string{
+		"amqp", "beautifulsoup4", "billiard", "celery", "certifi", "chardet",
+		"django", "gunicorn", "httplib2", "idna", "kombu", "mistune-contrib",
+		"mistune", "psycopg2-binary", "pygments", "pytvdbapi", "pytz",
+		"requests", "urllib3", "vine",
+	}
+	actual := FeastRequirements("fixtures/requirements.txt")
+
+	assert.Equal(expected, actual)
 }

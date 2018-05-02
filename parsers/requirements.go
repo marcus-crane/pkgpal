@@ -18,11 +18,11 @@ func PruneVersion(requirement string) string {
 }
 
 // PruneRequirements parses a slice of requirements names and removes the versioning if it exists
-func PruneRequirements(requirementsString string) []string {
-	requirements := ParseRequirements(requirementsString)
+func PruneRequirements(requirements []string) []string {
 	var reqs []string
 	for _, requirement := range requirements {
-		reqs = append(reqs, PruneVersion(requirement))
+		unpinnedRequirement := PruneVersion(requirement)
+		reqs = append(reqs, unpinnedRequirement)
 	}
 	return reqs
 }
@@ -31,4 +31,12 @@ func PruneRequirements(requirementsString string) []string {
 func LoadRequirements(path string) []string {
 	_, file := LoadFile(path, true)
 	return ParseRequirements(file)
+}
+
+// FeastRequirements loads in a requirements file, parses it, breaks up each line,
+// strips out versions if they're pinned and returns a list of package names
+// in alphabetical order
+func FeastRequirements(path string) []string {
+	requirements := LoadRequirements(path)
+	return PruneRequirements(requirements)
 }

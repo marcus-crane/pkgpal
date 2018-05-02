@@ -12,7 +12,8 @@ func TestParsePackageJSON(t *testing.T) {
 	expected := PackageJSON{
 		Name: "test-package",
 		Dependencies: Dependency{
-			"heck": "^1.2.3",
+			"heck":  "^1.2.3",
+			"zebra": "0.0.1",
 		},
 		DevDependencies: Dependency{
 			"nice": "0.1.2",
@@ -30,10 +31,19 @@ func TestParsePackageJSON(t *testing.T) {
 func TestSortDependencies(t *testing.T) {
 	assert := assert.New(t)
 
-	expected := []string{"heck", "nice", "wow"}
+	expected := []string{"heck", "nice", "wow", "zebra"}
 
 	pkgJSON := ParsePackageJSON("fixtures/package.json")
 	actual := SortDependencies(pkgJSON)
+
+	assert.Equal(expected, actual)
+}
+
+func TestParseEntirePackageJSON(t *testing.T) {
+	assert := assert.New(t)
+
+	expected := []string{"heck", "nice", "wow", "zebra"}
+	actual := FeastPackageJSON("fixtures/package.json")
 
 	assert.Equal(expected, actual)
 }

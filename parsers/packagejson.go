@@ -45,3 +45,10 @@ func SortDependencies(pkgJSON PackageJSON) []string {
 	sort.Strings(dependencies)
 	return dependencies
 }
+
+// FeastPackageJSON takes in a file path for a package.json file
+// and returns its dependencies (normal + dev) in alphabetical order
+func FeastPackageJSON(path string) []string {
+	pkgJSON := ParsePackageJSON(path)
+	return SortDependencies(pkgJSON)
+}
