@@ -11,7 +11,9 @@ func TestLoadFileAsString(t *testing.T) {
 	assert := assert.New(t)
 
 	_, file := LoadFile("fixtures/test.txt", true)
-	assert.Equal(reflect.TypeOf(file), "string")
+	expected := ""
+
+	assert.Equal(reflect.TypeOf(file), reflect.TypeOf(expected))
 	assert.Equal(file, "This is a test")
 }
 
@@ -19,5 +21,7 @@ func TestLoadFileAsBytes(t *testing.T) {
 	assert := assert.New(t)
 
 	file, _ := LoadFile("fixtures/test.txt", false)
-	assert.Equal(reflect.TypeOf(file), "byte")
+	expected := []byte{}
+
+	assert.Equal(reflect.TypeOf(file), reflect.TypeOf(expected))
 }
