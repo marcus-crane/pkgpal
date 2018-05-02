@@ -1,0 +1,10 @@
+{
+    "name": "test-package",
+    "dependencies": {
+        "buttcli": "^0.1.2"
+    },
+    "devDependencies": {
+        "testpackage": "~0.1.2",
+        "fake5000": "9.3.3"
+    }
+}

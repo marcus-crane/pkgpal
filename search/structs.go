@@ -8,7 +8,7 @@ type Package struct {
 	License       string `json:"license"`
 	Name          string `json:"name"`
 	PackagePage   string `json:"package_page"`
-	SourceRepo    bool   `json:"source_repo"`
+	SourceRepo    string `json:"source_repo"`
 	Tarball       string `json:"tarball"`
 }
 
