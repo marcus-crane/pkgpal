@@ -17,7 +17,7 @@ func TestNpmPackage(t *testing.T) {
 		LatestVersion: "0.1.2",
 		Name:          "fakehotdogpackage",
 		PackagePage:   "https://pypi.org/project/notarealthing",
-		SourceRepo:    false,
+		SourceRepo:    "",
 		Tarball:       "https://src.things.net/hotdog/0.1.2/src.tar.gz",
 	}
 
@@ -48,7 +48,7 @@ func TestParseNpmPackage(t *testing.T) {
 		LatestVersion: "0.9.9",
 		Name:          "buttcli",
 		PackagePage:   "https://pypi.org/project/buttcli",
-		SourceRepo:    false,
+		SourceRepo:    "",
 		Tarball:       "https://butts.net/fart.zip",
 	}
 
@@ -58,7 +58,7 @@ func TestParseNpmPackage(t *testing.T) {
 		LatestVersion: "0.1.2",
 		Name:          "fake5000",
 		PackagePage:   "https://pypi.org/project/fake5000",
-		SourceRepo:    false,
+		SourceRepo:    "",
 		Tarball:       "https://cardboarddreams.net/sigh.7z",
 	}
 
@@ -68,7 +68,7 @@ func TestParseNpmPackage(t *testing.T) {
 		LatestVersion: "0.1.2",
 		Name:          "testpackage",
 		PackagePage:   "https://pypi.org/project/testpackage",
-		SourceRepo:    false,
+		SourceRepo:    "",
 		Tarball:       "https://air.drop/isitonline.rar",
 	}
 

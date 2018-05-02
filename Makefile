@@ -7,5 +7,11 @@ mac:
 linux:
 	GOOS=linux go build -o pkgpal
 
-install:
+bin:
 	sudo mv pkgpal /usr/local/bin/
+
+setup:
+	go get -t ./...
+
+test:
+	go test ./...

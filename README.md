@@ -12,14 +12,18 @@ This project strives to do the same but in a way that you could run eg; `pkgpal 
 
 # Development
 
-At the moment, I'm just writing tests and executing them using VS Code. The project isn't in any usage state, nor does it have the CLI part set up. I'll be likely using [urfave/cli](https://github.com/urfave/cli) v2 but I'll do all that once the functionality is in place first.
+The project currently has a functional CLI although it only has searching implemented with 2 registries. It still needs some cleaning up but for one of searching for either NPM or PyPi, it's usable.
 
-You can install everything needed by cloning the project into your Go path and running `go get -t ./...`.
+You can install everything needed by cloning the project into your Go path and running `make setup`.
 
-I'm pretty sure that works anyway. Let me know if it doesn't.
+To build a binary for your system, run `make {platform}` where platform is either `windows`, `mac` or `linux`.
+
+That will generate an executable binary. If you're on `mac` or `linux`, running `make bin` will attempt to move the binary to your `/usr/local/bin` folder. Once there, the binary will be in your `$PATH` meaning you can execute `pkgpal` from anywhere on your system.
+
+If you're on Windows, *shrug* I suppose you just execute it from the command prompt? I'll have to get back to you on that. Sorry!
 
 # Tests
 
  I'm trying to do this project using TDD which is interesting and hard because I'm still fairly new to go.
 
- You can run the current tests with `go test ./...`.
+ You can run the current tests with `make test`.
