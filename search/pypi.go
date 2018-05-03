@@ -2,6 +2,7 @@ package search
 
 import (
 	"encoding/json"
+	"fmt"
 	"sort"
 
 	"github.com/marcus-crane/pkgpal/parsers"
@@ -15,6 +16,7 @@ func PypiPackage(name string) Package {
 
 	unmarshallErr := json.Unmarshal(body, &response)
 	if unmarshallErr != nil {
+		fmt.Println("Paniced at unmarshall")
 		panic(unmarshallErr)
 	}
 	return response
@@ -23,16 +25,9 @@ func PypiPackage(name string) Package {
 // ParseRequirements takes the file path for a requirements
 // file, parses it, queries each package and returns
 // a slice of Package structs
-func ParseRequirements(path string) Packages {
-	var packages Packages
-
+func ParseRequirements(path string) []string {
 	requirements := parsers.FeastRequirements(path)
 	sort.Strings(requirements)
 
-	for _, requirement := range requirements {
-		packageResponse := PypiPackage(requirement)
-		packages = append(packages, packageResponse)
-	}
-
-	return packages
+	return requirements
 }

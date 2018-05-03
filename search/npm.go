@@ -23,16 +23,9 @@ func NpmPackage(name string) Package {
 // ParseRequirements takes the file path for a requirements
 // file, parses it, queries each package and returns
 // a slice of Package structs
-func ParseNpmPackage(path string) Packages {
-	var packages Packages
-
+func ParseNpmPackage(path string) []string {
 	pkgJSON := parsers.FeastPackageJSON(path)
 	sort.Strings(pkgJSON)
 
-	for _, pkg := range pkgJSON {
-		packageResponse := NpmPackage(pkg)
-		packages = append(packages, packageResponse)
-	}
-
-	return packages
+	return pkgJSON
 }

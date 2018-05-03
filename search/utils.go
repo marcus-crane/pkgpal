@@ -1,16 +1,13 @@
 package search
 
-import (
-	"io/ioutil"
-	"net/http"
-)
+import httpclient "github.com/ddliu/go-httpclient"
 
 func Query(url string) []byte {
-	resp, err := http.Get(url)
+	res, err := httpclient.Get(url)
 	if err != nil {
 		panic(err)
 	}
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := res.ReadAll()
 	if err != nil {
 		panic(err)
 	}
